@@ -18,14 +18,14 @@
             }
         </style>
         <div class="loginPanel">
-            <form action="User.php" method="post">
+            <form action="Login.js" method="post">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" class="inputBox" autofocus>
+                <input type="text" id="username" name="username" class="inputBox" autofocus required>
 
                 <label for="password">Password:</label>
-                <input type="text" id="password" name="password" class="inputBox">
+                <input type="text" id="password" name="password" class="inputBox" required>
                 <br>
-                <button class = "buttons">Login</button>
+                <button type = "submit" class = "buttons">Login</button>
             </form>
             <a href='NewAccount.html'><button class = "buttons">Create Account</button></a>
         </div>
