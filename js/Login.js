@@ -6,7 +6,8 @@ document.getElementById('login-form').addEventListener('submit', function (event
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    const connection = mysql.createConnection({host:"localhost", user:"root", password:"", database:"card_db"})
+    const connection = mysql.createConnection({host:"127.0.0.1", port:"3306", database:"card_db"})
+    //const connection = mysql.createConnection({host:"localhost", user:"root", password:"", database:"card_db"})
     con.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");
