@@ -6,7 +6,7 @@ document.getElementById('login-form').addEventListener('submit', function (event
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    
+    const connection = mysql.createConnection
     // You should replace these with your actual authentication logic.
     if (username === 'yourusername' && password === 'yourpassword') {
         // Successful login, you can redirect to another page or perform other actions.
