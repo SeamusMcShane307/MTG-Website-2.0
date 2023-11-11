@@ -10,15 +10,17 @@
         <title>Login Page</title> 
         <meta charset="utf-8">
         <meta name="viewport" conent="width=device-width, initial-scale=1">
+        <script defer src="js/Login.js"></script>
     </head>
     <body>
         <style>
             body {
-              background-image: url('images/RagavanBackground.jpg');
+              background-image: url('css/_eaaad586-7794-4f2f-9193-b9b8f79d9ccd.jpg');
             }
         </style>
+        <div id="error"></div>
         <div class="loginPanel">
-            <form action="js/Login.js" method="post">
+            <form id = loginForm>
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" class="inputBox" autofocus required>
 
@@ -27,11 +29,6 @@
                 <br>
                 <button type = "submit" class = "buttons">Login</button>
             </form>
-            <script> //src="js/Login.js"
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
-                document.write(username);
-            </script>
 
             <a href='NewAccount.html'><button class = "buttons">Create Account</button></a>
         </div>
