@@ -5,18 +5,45 @@
     font-family: "Arial";
 }
 
-.navbar{
-    padding: 3vh;
-    background-color: #0D41A2;
+header {
+    display: block;
+    background-color: black;
+    max-height: 20vh;
+    height: 20vh;
+}
 
+header img{
+    float: left;
+    max-width: 20vw;
+    max-height: 20vh;
+    border-radius: 50%;
+}
+
+.navbar{
+    float: left;
+    display: block;
+    padding: 3vh;
+    background-color: blue;
+    margin-top: 2vh
 }
 
 .navButtons{
-    width: 33%;
-    background-color: #4E86EF;
+    background-color: #FAE4A8;
     font-size: 2vw;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
+    padding: 1vh;
     border-radius: 6px;
     border: none;
+    font-weight: bold;
+}
+
+nav li {
+    border-radius: 2em;
+    list-style-type: none;
+    display: inline-block;
+    padding: 1em;
+}
+
+.navButtons:hover {
+    color: navy;
+    font-style: italic;
 }

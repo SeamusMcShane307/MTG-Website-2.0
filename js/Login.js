@@ -1,5 +1,5 @@
 // Login.js
-const mysql = require('mysql2')
+//const mysql = require('mysql2')
 const loginForm = document.getElementById('loginForm');
 
 loginForm.addEventListener('submit',  (event) => {
