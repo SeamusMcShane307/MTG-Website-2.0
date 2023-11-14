@@ -6,34 +6,36 @@
 }
 
 header {
-    display: block;
-    background-color: black;
-    max-height: 20vh;
-    height: 20vh;
+    display: flex;
+    max-height: 20%;
+    height: 20%;
+    padding: 10px;
 }
 
 header img{
+    display: flex;
     float: left;
     max-width: 20vw;
     max-height: 20vh;
     border-radius: 50%;
+    align-items: center;
 }
 
 .navbar{
     float: left;
-    display: block;
-    padding: 3vh;
-    background-color: blue;
-    margin-top: 2vh
+    display: flex;
+    width: 80%;
+    align-items: center;
 }
 
 .navButtons{
-    background-color: #FAE4A8;
+    background-color: #011D35;
     font-size: 2vw;
     padding: 1vh;
     border-radius: 6px;
     border: none;
     font-weight: bold;
+    color: #FAE4A8;
 }
 
 nav li {
@@ -44,6 +46,6 @@ nav li {
 }
 
 .navButtons:hover {
-    color: navy;
+    color: white;
     font-style: italic;
 }
