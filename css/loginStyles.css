@@ -1,5 +1,5 @@
 .loginPanel{
-    background-color: #ffffff;
+    background-color: rgb(255, 255, 255, .5);
     width: 20vw;
     padding: 2vh;
     margin: auto auto;
@@ -14,11 +14,13 @@
 .buttons{
     width: 80%;
     font-size: 2vw;
+    background-color: rgb(255, 255, 255, .5);
 }
 
 .inputBox{
     width: 90%;
     font-size: 4vh;
+    opacity: .5;
 }
 
 .navbar{
