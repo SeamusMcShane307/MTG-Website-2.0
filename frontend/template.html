@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<!-- http://localhost/Database%20Website/Login.html -->
+<!-- This website template was created by: Seamus McShane-->
+
+<html lang=:en">
+<html>
+    <head>
+        <link rel="stylesheet" href="css/loginStyles.css">
+        <link rel="stylesheet" href="css/global.css">
+        <title>Login Page</title> 
+        <meta charset="utf-8">
+        <meta name="viewport" conent="width=device-width, initial-scale=1">
+        <!-- <script defer src="js/Login.js"></script> -->
+    </head>
+
+    <body>
+        <header>
+            <a href="home/index.html"></a>
+            <image src="css/logo.jpg"></image>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="Trade.html"><button class="navButtons">Trade</button></a></li>
+                    <li><a href="Collection.html"><button class="navButtons">My Collection</button></a></li>
+                    <li><a href="Deck.html"><button class="navButtons">Deck Builder</button></a></li>
+                    <li><a href="Login.html"><button class="navButtons" id="loginStatus"></button></a></li>
+                </ul>
+            </nav>
+            <script>
+                // Example: Check if the user is signed in (you can replace this logic with your authentication check)
+                const isUserSignedIn = true; // Replace with your actual authentication check
+
+                // Function to update the navigation bar based on the sign-in status
+                function updateNavbar() {
+                    const loginStatusElement = document.querySelector("#loginStatus");
+
+                    if (isUserSignedIn) {
+                        loginStatusElement.textContent = 'Logout';
+                    } else {
+                        loginStatusElement.textContent = 'Login';
+                    }
+                }
+                // Call the function to update the navigation bar on page load
+                updateNavbar();
+            </script>
+        </header>
+        
+    </body>
+
+    <!-- <footer>
+        <p>Created by: Seamus McShane</p>
+        <p>Complaints/Advice: seamcshane03@gmai.com</p>
+    </footer> -->
+</html>
