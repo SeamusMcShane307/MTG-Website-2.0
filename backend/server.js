@@ -1,7 +1,17 @@
+// required packages
+    // installed packages
 const express = require("express")
+const mongoose = require("mongoose")
+    // my packages
+const trade = require("./routes/trade")
 
+// express app
 const app = express()
 
+// middleware, reformats the req into json
+app.use(express.json())
+
+// outputs to console info on each request
 app.use((req, res, next) => {
     console.log("new request made:");
     console.log("host: ", req.hostname);
@@ -10,14 +20,31 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/', (req, res) => {
+// all routes for trade page, found in /routes/trade.js
+app.use("/trade", trade);
+
+
+// basic routes
+app.get('/', (req, res) => {    // home page
     res.json({mssg: 'Welcome to the app'})
-})
+});
 
+// connect to local mongodb
+const uri = "mongodb://localhost:27017/MTG-Website-2"
+mongoose.connect(uri)
+    .then(() => {
+        // listen for requests after conencting to db
+        app.listen(4000, () => {
+            console.log('connected to db and listening on port 4000!!!')
+        })
+    })
+    .catch((error) => { // catches any errors when connecting to db
+        console.log(error)
+    });
 
-app.listen(4000, () => {
-    console.log('listening on port 4000!!!')
-})
+// app.listen(4000, () => {
+//     console.log('listening on port 4000!!!')
+// });
 
 // redirect example
 
