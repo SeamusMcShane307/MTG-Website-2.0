@@ -29,6 +29,14 @@ header img {
     padding-left: 3vw;
 }
 
+/* formatting to try for next horizontal nav */
+
+/* nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+} */
+
 .navButtons {
     background-color: #011D35;
     font-size: 2vw;
