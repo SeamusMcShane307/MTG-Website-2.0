@@ -4,6 +4,7 @@ const express = require("express")
 const mongoose = require("mongoose")
     // my packages
 const trade = require("./routes/trade")
+const user = require("./models/userModel")
 
 // express app
 const app = express()
@@ -28,6 +29,10 @@ app.use("/trade", trade);
 app.get('/', (req, res) => {    // home page
     res.json({mssg: 'Welcome to the app'})
 });
+
+app.post("/newUser", (req, res) => {
+    const {username, password} = req.body
+})
 
 // connect to local mongodb
 const uri = "mongodb://localhost:27017/MTG-Website-2"
