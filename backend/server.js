@@ -3,7 +3,7 @@
 const express = require("express")
 const mongoose = require("mongoose")
     // my packages
-const trade = require("./routes/trade")
+const userRouter = require("./routes/userRouter")
 const User = require("./models/userModel")
 
 // express app
@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 });
 
 // all routes for trade page, found in /routes/trade.js
-app.use("/trade", trade);
+app.use("/user", userRouter);
 
 
 // basic routes
@@ -30,15 +30,8 @@ app.get('/', (req, res) => {    // home page
     res.json({mssg: 'Welcome to the app'})
 });
 
-app.post("/newUser", async (req, res) => {
-    const {username, password} = req.body
-
-    try{
-        const user = await User.create({username, password});
-        res.status(200).json(user);
-    } catch(error){
-        res.status(400).json({error: error.message})
-    }
+app.post("/trade", async (req, res) => {
+    res.json({mssg: "Welcome to the trade page"})
 })
 
 // connect to local mongodb
