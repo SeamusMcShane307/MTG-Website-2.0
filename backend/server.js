@@ -4,7 +4,7 @@ const express = require("express")
 const mongoose = require("mongoose")
     // my packages
 const trade = require("./routes/trade")
-const user = require("./models/userModel")
+const User = require("./models/userModel")
 
 // express app
 const app = express()
@@ -30,8 +30,15 @@ app.get('/', (req, res) => {    // home page
     res.json({mssg: 'Welcome to the app'})
 });
 
-app.post("/newUser", (req, res) => {
+app.post("/newUser", async (req, res) => {
     const {username, password} = req.body
+
+    try{
+        const user = await User.create({username, password});
+        res.status(200).json(user);
+    } catch(error){
+        res.status(400).json({error: error.message})
+    }
 })
 
 // connect to local mongodb

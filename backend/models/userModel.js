@@ -17,4 +17,4 @@ const userSchema = new Schema({
     }
 }, {timestamps: true }) // second property of the Schema function that timestamps when the document is created or updated
 
-module.exports = mongoose.model("user", userSchema)
+module.exports = mongoose.model("User", userSchema)
