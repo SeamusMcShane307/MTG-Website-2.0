@@ -1,21 +1,35 @@
 const User = require("../models/userModel")
 
 // get all users
-
+const getUsers = async (req, res) => {
+    const users = await User.find({}).sort({createdAt:-1});
+    res.status(200).json(users);
+}
 
 // get a single user
+const getUser = async (req, res) => {
+    const {id} = req.params;
+
+    const user = await User.findById(id);
+
+    if (!user) {
+        return res.status(400).json({error: "No such user found"})
+    }
+    
+    res.status(200).json(user);
+}
 
 
 // create a user
 const createUser = async (req, res) => {
-    const {username, password} = req.body
+    const {username, password} = req.body;
 
     // add doc to db
     try{
         const user = await User.create({username, password});
         res.status(200).json(user);
     } catch(error){
-        res.status(400).json({error: error.message})
+        res.status(400).json({error: error.message});
     }
 }
 
@@ -26,5 +40,7 @@ const createUser = async (req, res) => {
 
 
 module.exports = {
+    getUsers,
+    getUser,
     createUser
 }

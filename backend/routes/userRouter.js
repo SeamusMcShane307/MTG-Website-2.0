@@ -1,5 +1,7 @@
 const express = require("express");
 const {
+    getUsers,
+    getUser,
     createUser,
 } = require("../controllers/userController")
 
@@ -11,15 +13,13 @@ router.get("/", (req, res) => {
 });
 
 // get all users
-
+router.get("/users", getUsers);
 
 // get a single user
-router.get("/:id", (req, res) => {
-    res.json({mssg: "GET user for single card"})
-});
+router.get("/:id", getUser);
 
 // create a user
-router.post('/', createUser)
+router.post("/", createUser);
 
 // delete a user
 router.delete("/:id", (req, res) => {
