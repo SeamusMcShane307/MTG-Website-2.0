@@ -1,4 +1,5 @@
 const User = require("../models/userModel")
+const mongoose = require("mongoose")
 
 // get all users
 const getUsers = async (req, res) => {
@@ -9,6 +10,10 @@ const getUsers = async (req, res) => {
 // get a single user
 const getUser = async (req, res) => {
     const {id} = req.params;
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: "User not found"})
+    }
 
     const user = await User.findById(id);
 
