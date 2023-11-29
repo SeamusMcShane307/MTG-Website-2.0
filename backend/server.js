@@ -21,18 +21,18 @@ app.use((req, res, next) => {
     next();
 });
 
-// all routes for trade page, found in /routes/trade.js
-app.use("/user", userRouter);
-
-
 // basic routes
 app.get('/', (req, res) => {    // home page
     res.json({mssg: 'Welcome to the app'})
 });
 
-app.post("/trade", async (req, res) => {
+// trade home page
+app.get("/trade", async (req, res) => {
     res.json({mssg: "Welcome to the trade page"})
 })
+
+// all routes for user page, found in /routes/userRouter.js
+app.use("/user", userRouter);
 
 // connect to local mongodb
 const uri = "mongodb://localhost:27017/MTG-Website-2"
