@@ -1,8 +1,8 @@
 export function Navbar() {
     return(
             <header>
-                <a href="home/index.html"></a>
-                <img src="../css/logo.jpg"></img>
+                <a href="home/index.html"/>
+                <img src="../css/logo.jpg" alt="logo"/>
                 <nav className="navbar">
                     <ul>
                         <li><a href="Trade.html"><button className="navButtons">Trade</button></a></li>
