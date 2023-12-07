@@ -1,8 +1,11 @@
+import logo from '../css/logo.jpg'
+
 export function Navbar() {
     return(
             <header>
-                <a href="home/index.html"/>
-                <img src="../css/logo.jpg" alt="logo"/>
+                <a href="home/index.html">
+                    <img src={logo} alt="logo"/>
+                </a>
                 <nav className="navbar">
                     <ul>
                         <li><a href="Trade.html"><button className="navButtons">Trade</button></a></li>
