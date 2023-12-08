@@ -1,0 +1,28 @@
+.loginPanel{
+    background-color: rgb(255, 255, 255, .5);
+    width: 20vw;
+    padding: 2vh;
+    margin: auto auto;
+    font-size: 3vw;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow: 0px 10px 20px black;
+    border: 2px solid black;
+    font-family: "Arial";
+}
+
+.buttons{
+    width: 80%;
+    font-size: 2vw;
+    background-color: rgb(255, 255, 255, .5);
+}
+
+.inputBox{
+    width: 90%;
+    font-size: 4vh;
+    opacity: .5;
+}
+
+.navbar{
+    text-align: center;
+}
