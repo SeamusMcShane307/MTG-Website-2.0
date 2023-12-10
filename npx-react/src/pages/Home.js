@@ -5,11 +5,12 @@ const Home = () => {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const response = await fetch('http://localhost:4000/user/users')
+            const response = await fetch('/user/users')
             const json = await response.json()
 
             if (response.ok) {
                 setUsers(json)
+                console.log(json)
             }
         }
 
@@ -20,7 +21,7 @@ const Home = () => {
         <div className="Home">
             <div className="users">
                 {users && users.map((user) => (
-                    <p key={user._id}>{user.name}</p>
+                    <p key={user._id}>{user.username}</p>
                 ))}
 
             </div>
