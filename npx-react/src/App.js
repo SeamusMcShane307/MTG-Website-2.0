@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 // pages and components
 import Home from './pages/Home'
 import Login from './pages/Login'
+import Trade from './pages/Trade';
 import Navbar from './components/Navbar';
 
 // css
@@ -22,6 +23,10 @@ function App() {
             <Route 
               path='/Login'
               element={<Login />}
+              />
+            <Route 
+              path='/Trade'
+              element={<Trade />}
               />
           </Routes>
         </div>

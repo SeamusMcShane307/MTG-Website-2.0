@@ -10,6 +10,7 @@ const Home = () => {
 
             if (response.ok) {
                 setUsers(json)
+                console.log(json)
             }
         }
 
