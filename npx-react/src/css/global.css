@@ -79,3 +79,35 @@ footer {
     margin-top: 2em;
     padding: 2em;
 }
+
+.autocomplete-container {
+    position: relative;
+    width: 300px;
+    /* Adjust width as needed */
+    font-family: Arial, sans-serif;
+}
+
+.card-search-bar {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.searchSuggestions {
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        padding: 8px;
+        cursor: pointer;
+    }
+
+    li.selected {
+        background-color: #ec48a2;
+    }
+}

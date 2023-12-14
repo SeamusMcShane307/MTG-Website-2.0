@@ -1,9 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-// pages and components
+// pages
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Trade from './pages/Trade';
+import MyCollection from './pages/MyCollection';
+
+// components
 import Navbar from './components/Navbar';
 
 // css
@@ -27,6 +30,10 @@ function App() {
             <Route 
               path='/Trade'
               element={<Trade />}
+              />
+            <Route 
+              path='/MyCollection'
+              element={<MyCollection />}
               />
           </Routes>
         </div>
