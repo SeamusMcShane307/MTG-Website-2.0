@@ -1,8 +1,13 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import AuthContext from '../context/AuthContext';
+import { useContext } from "react";
 
-import logo from '../css/logo.jpg'
+import logo from '../css/logo.jpg';
 
 export function Navbar() {
+    const { logout } = useContext(AuthContext);
+    logout();
+
     return(
             <header>
                 <Link to="/">
