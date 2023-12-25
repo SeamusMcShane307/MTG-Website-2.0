@@ -9,7 +9,8 @@ const Schema = mongoose.Schema  //function to create schema
 const userSchema = new Schema({
     username: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     password: {
         type: String,
