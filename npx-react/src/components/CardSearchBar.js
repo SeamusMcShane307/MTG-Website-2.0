@@ -1,41 +1,61 @@
 import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
 
 export function AutocompleteSearch() {
     const [searchTerm, setSearchTerm] = useState('');
+    const [cardImage, setCardImage] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
     const inputRef = useRef(null);
+    const [fetchCard, setFetchCard] = useState(false);
 
     useEffect(() => {
         const fetchSuggestions = async () => {
-        if (searchTerm.trim() === '') {
-            setSuggestions([]);
-            return;
-        }
-
-        try {
-            const response = await fetch(`https://api.scryfall.com/cards/autocomplete?q=${searchTerm}`);
-            if (!response.ok) {
-            throw new Error('Network response was not ok.');
+            if (searchTerm.trim() === '') {
+                setSuggestions([]);
+                return;
             }
 
-            const data = await response.json();
-            setSuggestions(data.data ? data.data.slice(0,5) : []);
-        } catch (error) {
-            console.error('There was a problem with the fetch operation:', error);
-        }
+            try {
+                const response = await fetch(`https://api.scryfall.com/cards/autocomplete?q=${searchTerm}`);
+                if (!response.ok) {
+                throw new Error('Network response was not ok.');
+                }
+
+                const data = await response.json();
+                setSuggestions(data.data ? data.data.slice(0,5) : []);
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
         };
 
-        fetchSuggestions();
-    }, [searchTerm]);
+        if (fetchCard) {
+            const fetchCardImage = async () => {
+                try {
+                    const response = await axios.get(`https://api.scryfall.com/cards/named?fuzzy=${searchTerm}`);
+                    const cardData = response.data;
+                    const imageUrl = cardData.image_uris?.normal || '';
+                    setCardImage(imageUrl);
+                } catch (error) {
+                    console.error('Error fetching card image:', error);
+                }
+        };
+            fetchCardImage();
+            setFetchCard(false); // Reset the state variable after fetching
+        }
 
-    const handleInputChange = (event) => {
+        fetchSuggestions();
+    }, [searchTerm, fetchCard]);
+
+    const handleInputChange = async (event) => {
         setSearchTerm(event.target.value);
     };
 
     const handleSuggestionClick = (suggestion) => {
         setSearchTerm(suggestion);
-        setSuggestions([])
+        setSuggestions([]);
+        inputRef.current.focus();
+        setFetchCard(true);
     }
 
     const handleKeyDown = (event) => {
@@ -52,7 +72,8 @@ export function AutocompleteSearch() {
         } else if (event.key === 'Enter' && selectedSuggestionIndex !== -1) {
             setSearchTerm(suggestions[selectedSuggestionIndex]);
             setSuggestions([]);
-            inputRef.current.focus();
+            setSelectedSuggestionIndex(-1);
+            setFetchCard(true);
         }
     };
 
@@ -79,6 +100,8 @@ export function AutocompleteSearch() {
                 </li>
                 ))}
             </ul>
+            
+            {cardImage && <img src={cardImage} alt="Card" />}
         </div>
     );
 };
