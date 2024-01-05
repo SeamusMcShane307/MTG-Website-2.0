@@ -21,9 +21,8 @@ const Home = () => {
         <div className="Home">
             <div className="users">
                 {users && users.map((user) => (
-                    <p key={user._id}>{user.username}</p>
+                    <p key={user._id}>{user.username}{user.password}</p>
                 ))}
-
             </div>
         </div>
     )

@@ -9,16 +9,50 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [allUsers, setAllUsers] = useState([]);
+    // const navigate = useNavigate();
 
-    const login = (userData) => {
-        // Perform login logic, receive token or user data from the server
-        // Set user data in the state
-        setUser(userData);
+    const login = async (username, password) => {
+        try {
+            const response = await fetch('/user/users');
+            if(!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+
+            const json = await response.json();
+            if(Array.isArray(json)) {
+                setAllUsers(json);
+                console.log(allUsers);
+
+                if(checkCredentials(username, password, json)) {
+                    setUser(username);
+                    return true;
+                }
+            }
+        } catch (error) {
+            console.error("There was a problem attempting to login: ", error);
+        }
+        return false;
     };
+
+    const checkCredentials = (username, password, users) => {
+        console.log(users);
+        if (users) {
+            const userFound = users.find((user) => user.username === username && user.password === password);
+            if(userFound){
+                console.log("userFound is true")
+                return true;
+            }
+            return false;
+        }
+        return false;
+    };
+
 
     const logout = () => {
         // Perform logout logic (clear token, user data, etc.)
-        console.log(1);
+        setUser(null);
+        console.log("Logout");
         
         //setUser(null);
     };
