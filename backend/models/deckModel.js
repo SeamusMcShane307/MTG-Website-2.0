@@ -7,13 +7,13 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema  //function to create schema
 
 const deckSchema = new Schema({
-    deckname: {
+    deckName: {
         type: String,
         required: true,
         unique: true
     },
     deckList: {
-        type: String,
+        type: Array,
         // required: true
     }
 }, {timestamps: true }) // second property of the Schema function that timestamps when the document is created or updated
