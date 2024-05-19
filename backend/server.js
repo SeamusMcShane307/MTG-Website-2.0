@@ -5,6 +5,7 @@ const mongoose = require("mongoose")
     // my packages
 const userRouter = require("./routes/userRouter")
 const deckRouter = require("./routes/deckRouter")
+const tradeRouter = require("./routes/tradeRouter")
 const User = require("./models/userModel")
 
 // express app
@@ -27,16 +28,14 @@ app.get('/', (req, res) => {    // home page
     res.json({mssg: 'Welcome to the app'})
 });
 
-// trade home page
-app.get("/trade", async (req, res) => {
-    res.json({mssg: "Welcome to the trade page"})
-})
-
 // all routes for user page, found in /routes/userRouter.js
 app.use("/user", userRouter);
 
-// all routes for user page, found in /routes/userRouter.js
+// all routes for deck page, found in /routes/deckRouter.js
 app.use("/deck", deckRouter);
+
+// all routes for trade page, found in /routes/tradeRouter.js
+app.use("/trade", tradeRouter);
 
 // connect to local mongodb
 const uri = "mongodb://localhost:27017/MTG-Website-2"
