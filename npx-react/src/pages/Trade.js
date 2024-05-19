@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react"
 
+// my files
+import { fetchCardImage } from "../scryfallAPI/fetchCardImage";
+import "../css/tradeList.css"; 
+
 const Trade = () => {
-    const [cards, setCards] = useState([])
-    
+    const [cards, setCards] = useState([]);
+    const [allTrades, setAllTrades] = useState([]);
+    const [tradeImages, setTradeImages] = useState([]);
 
     useEffect(() => {
         const fetchCards = async () => {
@@ -27,15 +32,48 @@ const Trade = () => {
                 }
 
                 const data = await response.json();
+                console.log(data);
                 const names = data.data.map(card => card.name);
                 setCards(names);
             } catch(error) {
-                console.error("There was a problem with the fetch operation: ", error)
+                console.error("There was a problem with the Scryfall fetch: ", error)
             }
         };
 
-        fetchCards()
+        fetchCards();
     }, []);
+
+    useEffect(() => {
+        const getAllTrades = async () => {
+            try {
+                const response = await fetch('/trade/trades');
+            
+                if (!response.ok) {
+                    throw new Error('Network response was not ok.');
+                }
+
+                const data = await response.json();
+                //const allTrades = data.map(trade => trade.tradeGive);
+                setAllTrades(data);
+            } catch(error) {
+                console.error("There was a problem with the All Trades fetch: ", error)
+            }
+        };
+
+        getAllTrades();
+    }, []);
+
+    useEffect(() => {
+        const fetchTradeImages = async () => {
+        const images = await Promise.all(allTrades.map(async (trade) => ({
+            tradeGiveImage: await fetchCardImage(trade.tradeGive),
+            tradeTakeImage: await fetchCardImage(trade.tradeTake)
+        })));
+        setTradeImages(images);
+        };
+
+        fetchTradeImages();
+    }, [allTrades]);
 
     return (
         <div className="Trade">
@@ -47,32 +85,27 @@ const Trade = () => {
                     ))}
                 </ul>
             </div>
+            <h2>Trades:</h2>
+            <div className="allTrades">
+                <ul className="trade-list">
+                    {tradeImages.map((trade, index) => (
+                        <li key={index}>
+                            <div className="trade-container">
+                                <div className="image-container">
+                                    <span className="trade-label">Trading:</span>
+                                    <img src={trade.tradeGiveImage} alt="Trade Give" className="trade-image" />
+                                </div>
+                                <div className="image-container">
+                                    <span className="trade-label">Offering:</span>
+                                    <img src={trade.tradeTakeImage} alt="Trade Take" className="trade-image" />
+                                </div>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     )
 }
 
 export default Trade
-
-
-
-// const cardName = "Black Lotus";  // Replace with the card name you're interested in
-
-// // URL for the Scryfall API endpoint
-// const apiUrl = `https://api.scryfall.com/cards/named?exact=${encodeURIComponent(cardName)}`;
-
-// // Make the API request using the fetch function
-// fetch(apiUrl)
-//   .then(response => {
-//     if (!response.ok) {
-//       throw new Error(`HTTP error! Status: ${response.status}`);
-//     }
-//     return response.json(); // Parse the JSON in the response
-//   })
-//   .then(data => {
-//     // Handle the data from the API response
-//     console.log(data.oracle_text);
-//   })
-//   .catch(error => {
-//     // Handle errors
-//     console.error('Error:', error);
-//   });

@@ -27,11 +27,11 @@ const getTrade = async (req, res) => {
 
 // create a trade
 const createTrade = async (req, res) => {
-    const {tradeName, tradeList} = req.body;
+    const {tradeGive, tradeTake} = req.body;
 
     // add doc to db
     try{
-        const trade = await Trade.create({tradeName, tradeList});
+        const trade = await Trade.create({tradeGive, tradeTake});
         res.status(200).json(trade);
     } catch(error){
         res.status(400).json({error: error.message});

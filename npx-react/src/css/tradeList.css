@@ -1,0 +1,40 @@
+.trade-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.trade-list li {
+    margin-bottom: 20px;
+}
+
+.trade-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    /* Light grey border for list items */
+    border-radius: 5px;
+    /* Rounded corners for list items */
+}
+
+.trade-label {
+    flex: 1;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.trade-image {
+    max-width: 100px;
+    /* Adjust to your desired smaller size */
+    height: auto;
+    margin-right: 10px;
+    /* Add spacing between images */
+}
+
+.image-container div {
+    display: flex;
+    flex-direction: column;
+}
